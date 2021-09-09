@@ -1,0 +1,11 @@
+.link {
+  padding: 20px;
+  color: rgb(48, 44, 44);
+  font-weight: bold;
+  font-size: large;
+  line-height: 32px;
+}
+
+.active {
+  color: rgb(101, 36, 161);
+}
