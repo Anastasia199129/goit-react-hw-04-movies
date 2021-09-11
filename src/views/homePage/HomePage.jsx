@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useRouteMatch } from 'react-router-dom';
 import { useLocation } from 'react-router';
-
+import PropTypes from 'prop-types';
 import s from './homePage.module.css';
 
 const HomePage = () => {
@@ -49,6 +49,12 @@ const HomePage = () => {
       )}
     </div>
   );
+};
+
+HomePage.propTypes = {
+  movie: PropTypes.array,
+  url: PropTypes.string,
+  location: PropTypes.string,
 };
 
 export default HomePage;

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 const Cast = ({ movieId }) => {
   const [movie, setMovie] = useState(null);
@@ -10,7 +11,7 @@ const Cast = ({ movieId }) => {
       )
       .then(response => {
         if (response.status === 200) {
-          setMovie(response);
+          setMovie(response.data.cast);
         }
       })
       .catch(error => {
@@ -20,7 +21,7 @@ const Cast = ({ movieId }) => {
   return (
     movie && (
       <ul>
-        {movie.data.cast.map(r => (
+        {movie.map(r => (
           <li key={r.id}>
             <img src={`https://image.tmdb.org/t/p/w500${r.profile_path}`} alt={r.name} />
             <p>Name: {r.name}</p>
@@ -30,6 +31,10 @@ const Cast = ({ movieId }) => {
       </ul>
     )
   );
+};
+
+Cast.propTypes = {
+  movie: PropTypes.array,
 };
 
 export default Cast;

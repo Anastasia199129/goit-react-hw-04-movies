@@ -6,6 +6,7 @@ import { Route } from 'react-router-dom';
 import Cast from '../cast/Cast';
 import { NavLink } from 'react-router-dom';
 import Reviews from '../reviews/Reviews';
+import PropTypes from 'prop-types';
 
 const MovieDetailsPage = () => {
   const [movie, setMovie] = useState(null);
@@ -14,7 +15,13 @@ const MovieDetailsPage = () => {
   const location = useLocation();
   const history = useHistory();
 
+  console.log('loc', location);
+  console.log('his', history);
+
   useEffect(() => {
+    if (!movieId) {
+      return;
+    }
     axios
       .get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=f63adc268da4af945e1cc9e898d72aa8`)
       .then(response => {

@@ -6,10 +6,18 @@ import Loader from './components/loader/Loader';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const HomePage = lazy(() => import('./views/homePage/HomePage'));
-const MoviesPage = lazy(() => import('./views/moviesPage/MoviesPage'));
-const MovieDetailsPage = lazy(() => import('./views/movieDetailsPage/MovieDetailsPage'));
-const NotFound = lazy(() => import('./views/notFound/NotFound'));
+const HomePage = lazy(() =>
+  import('./views/homePage/HomePage' /* webpackChunkName: "home-page" */),
+);
+const MoviesPage = lazy(() =>
+  import('./views/moviesPage/MoviesPage' /* webpackChunkName: "movies-page" */),
+);
+const MovieDetailsPage = lazy(() =>
+  import('./views/movieDetailsPage/MovieDetailsPage' /* webpackChunkName: "movie-details-page" */),
+);
+const NotFound = lazy(() =>
+  import('./views/notFound/NotFound' /* webpackChunkName: "not-found" */),
+);
 
 function App() {
   return (

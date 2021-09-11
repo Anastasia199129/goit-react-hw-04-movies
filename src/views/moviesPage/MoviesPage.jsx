@@ -76,7 +76,6 @@ const MoviesPage = () => {
           ))}
         </ul>
       )}
-      {/* We don't have any reviews for this movie */}
       <Route path={`${path}/${idMovies}`}>
         <MovieDetailsPage />
       </Route>
