@@ -18,7 +18,7 @@ const MovieDetailsPage = () => {
       .get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=f63adc268da4af945e1cc9e898d72aa8`)
       .then(response => {
         if (response.status === 200) {
-          setMovie(response);
+          setMovie(response.data);
         }
       })
       .catch(error => {
@@ -31,23 +31,22 @@ const MovieDetailsPage = () => {
       <div>
         <img
           className={s.img}
-          src={`https://image.tmdb.org/t/p/w500${movie.data.poster_path}`}
-          alt={movie.data.original_title}
+          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          alt={movie.original_title}
         />
-        <h2>{`${movie.data.original_title} (${movie.data.release_date.slice(0, 4)})`} </h2>
-        <p>{`User score: ${movie.data.vote_average * 10}%`}</p>
+        <h2>{`${movie.original_title} (${movie.release_date.slice(0, 4)})`} </h2>
+        <p>{`User score: ${movie.vote_average * 10}%`}</p>
         <h3>Overview</h3>
-        <p>{movie.data.overview}</p>
+        <p>{movie.overview}</p>
         <h4>Genres</h4>
         <ul>
-          {movie.data.genres.map(genre => (
+          {movie.genres.map(genre => (
             <li key={genre.id}>{genre.name}</li>
           ))}
         </ul>
         <p>Additional information</p>
         <NavLink to={`${url}/reviews`}>Reviews</NavLink>
         <NavLink to={`${url}/cast`}>Cast</NavLink>
-
         <Route path="/movies/:movieId/cast">
           <Cast movieId={movieId} url={url} />
         </Route>

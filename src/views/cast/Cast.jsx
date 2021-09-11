@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Cast = ({ movieId, url }) => {
+const Cast = ({ movieId }) => {
   const [movie, setMovie] = useState(null);
   useEffect(() => {
     axios
@@ -11,7 +11,6 @@ const Cast = ({ movieId, url }) => {
       .then(response => {
         if (response.status === 200) {
           setMovie(response);
-          console.log(response);
         }
       })
       .catch(error => {
@@ -24,8 +23,8 @@ const Cast = ({ movieId, url }) => {
         {movie.data.cast.map(r => (
           <li key={r.id}>
             <img src={`https://image.tmdb.org/t/p/w500${r.profile_path}`} alt={r.name} />
-            <p>{r.name}</p>
-            <p>{r.character}</p>
+            <p>Name: {r.name}</p>
+            <p>Character: {r.character}</p>
           </li>
         ))}
       </ul>

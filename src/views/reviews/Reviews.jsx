@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const Reviews = ({ movieId }) => {
   const [movie, setMovie] = useState(null);
+  const [dataResults, setDataResults] = useState([]);
   useEffect(() => {
     axios
       .get(
@@ -11,6 +12,7 @@ const Reviews = ({ movieId }) => {
       .then(response => {
         if (response.status === 200) {
           setMovie(response);
+          setDataResults(response.data.results);
           console.log(response);
         }
       })
@@ -20,10 +22,11 @@ const Reviews = ({ movieId }) => {
   }, [movieId]);
   return movie ? (
     <ul>
-      {movie.data.results.map(r => (
-        <li key={r.id}>
-          <h4>Avtor:{r.author_details.username}</h4>
-          <p>{r.content}</p>
+      {dataResults.length === 0 && <div>fdghjkl</div>}
+      {movie.data.results.map(result => (
+        <li key={result.id}>
+          <h4>Avtor:{result.author_details.username}</h4>
+          <p>{result.content}</p>
         </li>
       ))}
     </ul>
