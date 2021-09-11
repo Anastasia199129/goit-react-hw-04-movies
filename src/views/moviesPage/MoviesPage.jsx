@@ -14,19 +14,19 @@ const MoviesPage = () => {
   const { url, path } = useRouteMatch();
   const location = useLocation();
   const history = useHistory();
+
   const onChangeQuery = e => {
     setQuery(e.target.value);
   };
+
   const onSabmitForm = e => {
     e.preventDefault();
     if (query.trim() === '') {
       toast.warn('Fill in the search box!');
       return;
     }
-
     setSearchQuery(query);
     setQuery('');
-    setArrayOfFilms([]);
     history.push({ ...location, search: `?query=${query}` });
   };
 
@@ -53,6 +53,7 @@ const MoviesPage = () => {
         console.log(error);
       });
   }, [searchQuery]);
+
   return (
     <div>
       <form onSubmit={onSabmitForm}>
@@ -63,7 +64,14 @@ const MoviesPage = () => {
         <ul>
           {arrayOfFilms.map(r => (
             <li key={r.id}>
-              <NavLink to={`${url}/${r.id}`}>{r.original_title}</NavLink>
+              <NavLink
+                to={{
+                  pathname: `${url}/${r.id}`,
+                  state: { from: location },
+                }}
+              >
+                {r.original_title}
+              </NavLink>
             </li>
           ))}
         </ul>

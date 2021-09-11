@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useRouteMatch } from 'react-router-dom';
+import { useLocation } from 'react-router';
+
+import s from './homePage.module.css';
 
 const HomePage = () => {
   const [movie, setMovie] = useState(null);
   const { url } = useRouteMatch();
+  const location = useLocation();
 
   useEffect(() => {
     axios
@@ -26,9 +30,17 @@ const HomePage = () => {
       <h2>Trending Today</h2>
       {movie && (
         <ul>
-          {movie.map(({ id, title }) => (
+          {movie.map(({ id, title, backdrop_path, name }) => (
             <li key={id}>
-              <Link to={`${url}movies/${id}`}>
+              <img src={`https://image.tmdb.org/t/p/w500${backdrop_path}`} alt={name} />
+
+              <Link
+                className={s.link}
+                to={{
+                  pathname: `${url}movies/${id}`,
+                  state: { from: location },
+                }}
+              >
                 <p>{title}</p>
               </Link>
             </li>

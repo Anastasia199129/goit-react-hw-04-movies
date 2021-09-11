@@ -1,0 +1,12 @@
+.link {
+  text-decoration: none;
+  color: rgb(130, 45, 156);
+  font-size: large;
+  font-weight: bold;
+  line-height: 16px;
+}
+
+.link:hover,
+.link:focus {
+  color: cornflowerblue;
+}

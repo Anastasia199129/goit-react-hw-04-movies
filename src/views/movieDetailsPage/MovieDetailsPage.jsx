@@ -1,7 +1,7 @@
 import axios from 'axios';
 import s from './movieDetailsPage.module.css';
 import { useEffect, useState } from 'react';
-import { useParams, useRouteMatch } from 'react-router';
+import { useHistory, useLocation, useParams, useRouteMatch } from 'react-router';
 import { Route } from 'react-router-dom';
 import Cast from '../cast/Cast';
 import { NavLink } from 'react-router-dom';
@@ -11,6 +11,8 @@ const MovieDetailsPage = () => {
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
   const { url } = useRouteMatch();
+  const location = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     axios
@@ -25,9 +27,16 @@ const MovieDetailsPage = () => {
       });
   }, [movieId]);
 
+  const onGoBack = () => {
+    history.push(location?.state?.from ?? '/movies');
+  };
+
   return (
     movie && (
       <div>
+        <button type="button" onClick={onGoBack}>
+          Go back
+        </button>
         <img
           className={s.img}
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -44,8 +53,8 @@ const MovieDetailsPage = () => {
           ))}
         </ul>
         <p>Additional information</p>
-        <NavLink to={`${url}/reviews`}>Reviews</NavLink>
-        <NavLink to={`${url}/cast`}>Cast</NavLink>
+        <NavLink to={{ pathname: `${url}/reviews`, state: { from: location } }}>Reviews</NavLink>
+        <NavLink to={{ pathname: `${url}/cast`, state: { from: location } }}>Cast</NavLink>
         <Route path="/movies/:movieId/cast">
           <Cast movieId={movieId} url={url} />
         </Route>
