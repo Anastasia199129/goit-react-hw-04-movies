@@ -5,7 +5,7 @@ import { Link, useRouteMatch } from 'react-router-dom';
 const HomePage = () => {
   const [movie, setMovie] = useState(null);
   const { url } = useRouteMatch();
-  console.log(url);
+
   useEffect(() => {
     axios
       .get(

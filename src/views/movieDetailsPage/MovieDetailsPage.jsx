@@ -11,7 +11,6 @@ const MovieDetailsPage = () => {
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
   const { url } = useRouteMatch();
-  console.log(url);
 
   useEffect(() => {
     axios
@@ -50,9 +49,7 @@ const MovieDetailsPage = () => {
         <Route path="/movies/:movieId/cast">
           <Cast movieId={movieId} url={url} />
         </Route>
-        <Route path="/movies/:movieId/reviews">
-          {movieId && <Reviews movieId={movieId} url={url} />}
-        </Route>
+        <Route path="/movies/:movieId/reviews">{movieId && <Reviews movieId={movieId} />}</Route>
       </div>
     )
   );

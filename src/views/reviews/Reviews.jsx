@@ -20,18 +20,18 @@ const Reviews = ({ movieId }) => {
         console.log(error);
       });
   }, [movieId]);
-  return movie ? (
-    <ul>
-      {dataResults.length === 0 && <div>fdghjkl</div>}
-      {movie.data.results.map(result => (
-        <li key={result.id}>
-          <h4>Avtor:{result.author_details.username}</h4>
-          <p>{result.content}</p>
-        </li>
-      ))}
-    </ul>
-  ) : (
-    <div>We don't have any reviews for this</div>
+  return (
+    movie && (
+      <ul>
+        {dataResults.length === 0 && <div>We don't have any reviews for this</div>}
+        {movie.data.results.map(result => (
+          <li key={result.id}>
+            <h4>Avtor:{result.author_details.username}</h4>
+            <p>{result.content}</p>
+          </li>
+        ))}
+      </ul>
+    )
   );
 };
 

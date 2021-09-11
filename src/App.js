@@ -1,31 +1,37 @@
 import { Route, Switch } from 'react-router-dom';
-// import s from './App.module.css';
-
+import { lazy, Suspense } from 'react';
 import Container from './components/container/Container';
 import Navigation from './components/navigation/Navigation';
-import HomePage from './views/homePage/HomePage';
-import MoviesPage from './views/moviesPage/MoviesPage';
-import NotFound from './views/notFound/NotFound';
-import MovieDetailsPage from './views/movieDetailsPage/MovieDetailsPage';
+import Loader from './components/loader/Loader';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const HomePage = lazy(() => import('./views/homePage/HomePage'));
+const MoviesPage = lazy(() => import('./views/moviesPage/MoviesPage'));
+const MovieDetailsPage = lazy(() => import('./views/movieDetailsPage/MovieDetailsPage'));
+const NotFound = lazy(() => import('./views/notFound/NotFound'));
 
 function App() {
   return (
     <Container>
       <Navigation></Navigation>
-      <Switch>
-        <Route exact path="/">
-          <HomePage />
-        </Route>
-        <Route exact path="/movies">
-          <MoviesPage />
-        </Route>
-        <Route path="/movies/:movieId">
-          <MovieDetailsPage />
-        </Route>
-        <Route path="">
-          <NotFound />
-        </Route>
-      </Switch>
+      <ToastContainer autoClose={3000} position="top-center" />
+      <Suspense fallback={<Loader />}>
+        <Switch>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
+          <Route exact path="/movies">
+            <MoviesPage />
+          </Route>
+          <Route path="/movies/:movieId">
+            <MovieDetailsPage />
+          </Route>
+          <Route path="">
+            <NotFound />
+          </Route>
+        </Switch>
+      </Suspense>
     </Container>
   );
 }

@@ -14,7 +14,7 @@ const Cast = ({ movieId }) => {
         }
       })
       .catch(error => {
-        console.log(error);
+        console.log(error.message);
       });
   }, [movieId]);
   return (
