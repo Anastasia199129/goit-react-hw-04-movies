@@ -29,9 +29,9 @@ const HomePage = () => {
     <div>
       <h2>Trending Today</h2>
       {movie && (
-        <ul>
+        <ul className={s.list}>
           {movie.map(({ id, title, backdrop_path, name }) => (
-            <li key={id}>
+            <li className={s.item} key={id}>
               <img src={`https://image.tmdb.org/t/p/w500${backdrop_path}`} alt={name} />
 
               <Link
@@ -41,7 +41,7 @@ const HomePage = () => {
                   state: { from: location },
                 }}
               >
-                <p>{title}</p>
+                <p className={s.title}>{title}</p>
               </Link>
             </li>
           ))}

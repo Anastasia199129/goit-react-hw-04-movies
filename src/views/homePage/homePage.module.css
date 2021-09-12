@@ -4,9 +4,28 @@
   font-size: large;
   font-weight: bold;
   line-height: 16px;
+  width: 100%;
+  height: 100%;
+}
+
+.title {
+  padding: 15px;
 }
 
 .link:hover,
 .link:focus {
   color: cornflowerblue;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -15px;
+}
+
+.item {
+  width: 450px;
+  margin: 15px;
+  box-sizing: border-box;
+  border: 2px solid rgba(179, 67, 173, 0.411);
 }

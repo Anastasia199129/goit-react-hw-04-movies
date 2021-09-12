@@ -5,11 +5,13 @@ import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import MovieDetailsPage from '../movieDetailsPage/MovieDetailsPage';
+import PropTypes from 'prop-types';
+import s from './moviesPage.module.css';
 
 const MoviesPage = () => {
   const [query, setQuery] = useState('');
   const [searchQuery, setSearchQuery] = useState(null);
-  const [arrayOfFilms, setArrayOfFilms] = useState([]);
+  const [arrayOfFilms, setArrayOfFilms] = useState(null);
   const [idMovies, setId] = useState('');
   const { url, path } = useRouteMatch();
   const location = useLocation();
@@ -56,9 +58,17 @@ const MoviesPage = () => {
 
   return (
     <div>
-      <form onSubmit={onSabmitForm}>
-        <input type="text" onChange={onChangeQuery} value={query} />
-        <button type="submit"></button>
+      <form className={s.form} onSubmit={onSabmitForm}>
+        <input
+          className={s.input}
+          type="text"
+          onChange={onChangeQuery}
+          value={query}
+          placeholder="movie title"
+        />
+        <button className={s.button} type="submit">
+          Search
+        </button>
       </form>
       {arrayOfFilms && (
         <ul>
@@ -76,11 +86,22 @@ const MoviesPage = () => {
           ))}
         </ul>
       )}
+
       <Route path={`${path}/${idMovies}`}>
         <MovieDetailsPage />
       </Route>
     </div>
   );
+};
+
+MoviesPage.protTypes = {
+  query: PropTypes.string,
+  searchQuery: PropTypes.string,
+  arrayOfFilms: PropTypes.array,
+  idMovies: PropTypes.string,
+  url: PropTypes.string,
+  history: PropTypes.object,
+  Location: PropTypes.object,
 };
 
 export default MoviesPage;

@@ -23,7 +23,7 @@ const Cast = ({ movieId }) => {
       <ul>
         {movie.map(r => (
           <li key={r.id}>
-            <img src={`https://image.tmdb.org/t/p/w500${r.profile_path}`} alt={r.name} />
+            <img src={`https://image.tmdb.org/t/p/w400${r.profile_path}`} alt={r.name} />
             <p>Name: {r.name}</p>
             <p>Character: {r.character}</p>
           </li>

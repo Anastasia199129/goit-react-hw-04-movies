@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 const Reviews = ({ movieId }) => {
   const [movie, setMovie] = useState(null);
   const [dataResults, setDataResults] = useState([]);
+
   useEffect(() => {
     axios
       .get(
@@ -13,7 +15,6 @@ const Reviews = ({ movieId }) => {
         if (response.status === 200) {
           setMovie(response);
           setDataResults(response.data.results);
-          console.log(response);
         }
       })
       .catch(error => {
@@ -33,6 +34,11 @@ const Reviews = ({ movieId }) => {
       </ul>
     )
   );
+};
+
+Reviews.propTypes = {
+  movie: PropTypes.string,
+  dataResults: PropTypes.array,
 };
 
 export default Reviews;

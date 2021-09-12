@@ -1,4 +1,73 @@
-.img {
-  width: 400px;
+.imgContainer {
+  width: 350px;
   height: 400px;
+}
+
+.img {
+  width: inherit;
+  height: inherit;
+}
+.wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.overview {
+  width: 500px;
+}
+
+.wrapperList {
+  margin-left: 30px;
+}
+
+.mainTitle {
+  margin-top: 0;
+  color: rgb(125, 24, 184);
+}
+
+.overviewTitle {
+  color: rgb(125, 24, 184);
+}
+
+.genresTitle {
+  color: rgb(125, 24, 184);
+}
+
+.additionalInformation {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 1.875;
+  color: rgb(125, 24, 184);
+}
+
+.listGenres {
+  display: flex;
+}
+.itemGenres:not(:last-child) {
+  margin-right: 15px;
+}
+
+.button {
+  display: block;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.875;
+  text-align: center;
+  letter-spacing: 0.06em;
+  width: 60px;
+  height: 30px;
+  color: #ffff;
+  background: rgb(241, 72, 205);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+button:hover,
+button:focus {
+  background-color: rgb(190, 34, 151);
 }

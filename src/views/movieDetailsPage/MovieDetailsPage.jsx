@@ -35,33 +35,43 @@ const MovieDetailsPage = () => {
   }, [movieId]);
 
   const onGoBack = () => {
-    history.push(location?.state?.from ?? '/movies');
+    history.push(location?.state?.from ?? '/');
   };
 
   return (
     movie && (
       <div>
-        <button type="button" onClick={onGoBack}>
+        <button className={s.button} type="button" onClick={onGoBack}>
           Go back
         </button>
-        <img
-          className={s.img}
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          alt={movie.original_title}
-        />
-        <h2>{`${movie.original_title} (${movie.release_date.slice(0, 4)})`} </h2>
-        <p>{`User score: ${movie.vote_average * 10}%`}</p>
-        <h3>Overview</h3>
-        <p>{movie.overview}</p>
-        <h4>Genres</h4>
-        <ul>
-          {movie.genres.map(genre => (
-            <li key={genre.id}>{genre.name}</li>
-          ))}
-        </ul>
-        <p>Additional information</p>
-        <NavLink to={{ pathname: `${url}/reviews`, state: { from: location } }}>Reviews</NavLink>
-        <NavLink to={{ pathname: `${url}/cast`, state: { from: location } }}>Cast</NavLink>
+        <div className={s.wrapper}>
+          <div className={s.imgContainer}>
+            <img
+              className={s.img}
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              alt={movie.original_title}
+            />
+          </div>
+          <div className={s.wrapperList}>
+            <h2 className={s.mainTitle}>
+              {`${movie.original_title} (${movie.release_date.slice(0, 4)})`}{' '}
+            </h2>
+            <p>{`User score: ${movie.vote_average * 10}%`}</p>
+            <h3 className={s.overviewTitle}>Overview</h3>
+            <p className={s.overview}>{movie.overview}</p>
+            <h4 className={s.genresTitle}>Genres</h4>
+            <ul className={s.listGenres}>
+              {movie.genres.map(genre => (
+                <li className={s.itemGenres} key={genre.id}>
+                  {genre.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <p className={s.additionalInformation}>Additional information</p>
+        <NavLink to={`${url}/reviews`}>Reviews</NavLink>
+        <NavLink to={`${url}/cast`}>Cast</NavLink>
         <Route path="/movies/:movieId/cast">
           <Cast movieId={movieId} url={url} />
         </Route>
@@ -69,6 +79,14 @@ const MovieDetailsPage = () => {
       </div>
     )
   );
+};
+
+MovieDetailsPage.propTypes = {
+  movie: PropTypes.array,
+  movieId: PropTypes.string,
+  url: PropTypes.string,
+  history: PropTypes.object,
+  Location: PropTypes.object,
 };
 
 export default MovieDetailsPage;

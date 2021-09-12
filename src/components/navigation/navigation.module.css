@@ -9,3 +9,7 @@
 .active {
   color: rgb(36, 44, 161);
 }
+
+.App {
+  margin-bottom: 20px;
+}
