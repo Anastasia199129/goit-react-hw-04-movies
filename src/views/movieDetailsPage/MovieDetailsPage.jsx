@@ -15,9 +15,6 @@ const MovieDetailsPage = () => {
   const location = useLocation();
   const history = useHistory();
 
-  console.log('loc', location);
-  console.log('his', history);
-
   useEffect(() => {
     if (!movieId) {
       return;

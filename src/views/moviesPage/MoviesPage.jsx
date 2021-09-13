@@ -46,7 +46,6 @@ const MoviesPage = () => {
             toast.error('No movies found for this request!');
             return;
           }
-          console.log(response);
           setArrayOfFilms(response.data.results);
           setId(response.data.results.id);
         }
