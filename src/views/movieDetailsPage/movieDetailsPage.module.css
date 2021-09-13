@@ -71,3 +71,19 @@ button:hover,
 button:focus {
   background-color: rgb(190, 34, 151);
 }
+
+.linkAdditionalInformation {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.875;
+  text-decoration: none;
+  color: rgb(125, 24, 184);
+}
+
+.linkAdditionalInformation:not(:last-child) {
+  margin-right: 15px;
+}
+
+.activLink {
+  color: rgb(12, 31, 141);
+}

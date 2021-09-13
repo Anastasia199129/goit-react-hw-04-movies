@@ -70,8 +70,20 @@ const MovieDetailsPage = () => {
           </div>
         </div>
         <p className={s.additionalInformation}>Additional information</p>
-        <NavLink to={`${url}/reviews`}>Reviews</NavLink>
-        <NavLink to={`${url}/cast`}>Cast</NavLink>
+        <NavLink
+          className={s.linkAdditionalInformation}
+          activeClassName={s.activLink}
+          to={`${url}/reviews`}
+        >
+          Reviews
+        </NavLink>
+        <NavLink
+          className={s.linkAdditionalInformation}
+          activeClassName={s.activLink}
+          to={`${url}/cast`}
+        >
+          Cast
+        </NavLink>
         <Route path="/movies/:movieId/cast">
           <Cast movieId={movieId} url={url} />
         </Route>
