@@ -29,3 +29,6 @@
   box-sizing: border-box;
   border: 2px solid rgba(179, 67, 173, 0.411);
 }
+img {
+  width: inherit;
+}
