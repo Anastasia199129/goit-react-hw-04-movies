@@ -39,6 +39,7 @@ const Reviews = ({ movieId }) => {
 Reviews.propTypes = {
   movie: PropTypes.string,
   dataResults: PropTypes.array,
+  movieId: PropTypes.string,
 };
 
 export default Reviews;

@@ -98,9 +98,6 @@ MoviesPage.protTypes = {
   searchQuery: PropTypes.string,
   arrayOfFilms: PropTypes.array,
   idMovies: PropTypes.string,
-  url: PropTypes.string,
-  history: PropTypes.object,
-  Location: PropTypes.object,
 };
 
 export default MoviesPage;

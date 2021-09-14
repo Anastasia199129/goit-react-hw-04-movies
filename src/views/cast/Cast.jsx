@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import s from './cast.module.css';
 
 const Cast = ({ movieId }) => {
   const [movie, setMovie] = useState(null);
@@ -23,7 +24,9 @@ const Cast = ({ movieId }) => {
       <ul>
         {movie.map(r => (
           <li key={r.id}>
-            <img src={`https://image.tmdb.org/t/p/w400${r.profile_path}`} alt={r.name} />
+            <div className={s.wrapperImg}>
+              <img src={`https://image.tmdb.org/t/p/w400${r.profile_path}`} alt={r.name} />
+            </div>
             <p>Name: {r.name}</p>
             <p>Character: {r.character}</p>
           </li>
@@ -35,6 +38,7 @@ const Cast = ({ movieId }) => {
 
 Cast.propTypes = {
   movie: PropTypes.array,
+  movieId: PropTypes.string,
 };
 
 export default Cast;

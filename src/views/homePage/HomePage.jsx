@@ -53,8 +53,6 @@ const HomePage = () => {
 
 HomePage.propTypes = {
   movie: PropTypes.array,
-  url: PropTypes.string,
-  location: PropTypes.string,
 };
 
 export default HomePage;

@@ -82,7 +82,7 @@ const MovieDetailsPage = () => {
           Cast
         </NavLink>
         <Route path="/movies/:movieId/cast">
-          <Cast movieId={movieId} url={url} />
+          <Cast movieId={movieId} />
         </Route>
         <Route path="/movies/:movieId/reviews">{movieId && <Reviews movieId={movieId} />}</Route>
       </div>
@@ -92,10 +92,6 @@ const MovieDetailsPage = () => {
 
 MovieDetailsPage.propTypes = {
   movie: PropTypes.array,
-  movieId: PropTypes.string,
-  url: PropTypes.string,
-  history: PropTypes.object,
-  Location: PropTypes.object,
 };
 
 export default MovieDetailsPage;
