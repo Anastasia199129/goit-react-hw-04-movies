@@ -7,6 +7,7 @@ import Cast from '../cast/Cast';
 import { NavLink } from 'react-router-dom';
 import Reviews from '../reviews/Reviews';
 import PropTypes from 'prop-types';
+import default_img from '../../images/default_img.jpg';
 
 const MovieDetailsPage = () => {
   const [movie, setMovie] = useState(null);
@@ -35,6 +36,12 @@ const MovieDetailsPage = () => {
     history.push(location?.state?.from ?? '/');
   };
 
+  const posterDefault = () => {
+    return movie?.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : default_img;
+  };
+
+  const poster = posterDefault();
+
   return (
     movie && (
       <div>
@@ -43,11 +50,7 @@ const MovieDetailsPage = () => {
         </button>
         <div className={s.wrapper}>
           <div className={s.imgContainer}>
-            <img
-              className={s.img}
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.original_title}
-            />
+            <img className={s.img} src={poster} alt={movie.original_title} />
           </div>
           <div className={s.wrapperList}>
             <h2 className={s.mainTitle}>
