@@ -32,13 +32,15 @@ const MoviesPage = () => {
     history.push({ ...location, search: `?query=${query}` });
   };
 
+  const keyWord = new URLSearchParams(location.search).get('query');
+
   useEffect(() => {
-    if (!searchQuery) {
+    if (!keyWord) {
       return;
     }
     axios
       .get(
-        `https://api.themoviedb.org/3/search/movie?api_key=f63adc268da4af945e1cc9e898d72aa8&query=${searchQuery}`,
+        `https://api.themoviedb.org/3/search/movie?api_key=f63adc268da4af945e1cc9e898d72aa8&query=${keyWord}`,
       )
       .then(response => {
         if (response.status === 200) {
@@ -53,7 +55,7 @@ const MoviesPage = () => {
       .catch(error => {
         console.log(error);
       });
-  }, [searchQuery]);
+  }, [searchQuery, keyWord]);
 
   return (
     <div>
@@ -85,7 +87,6 @@ const MoviesPage = () => {
           ))}
         </ul>
       )}
-
       <Route path={`${path}/${idMovies}`}>
         <MovieDetailsPage />
       </Route>
